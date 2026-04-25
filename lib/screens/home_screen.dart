@@ -3,10 +3,11 @@ import '../theme/app_theme.dart';
 import 'exchange_screen.dart';
 import 'favorites_screen.dart';
 import 'transfer_screen.dart';
-
-// ─────────────────────────────────────────────────────────────────────────────
-// HOME SCREEN
-// ─────────────────────────────────────────────────────────────────────────────
+import 'aba_cards_screen.dart';
+import 'qr_screen.dart';
+import 'notification_screen.dart';
+import 'aba_account_screen.dart';
+import 'settings_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -45,7 +46,6 @@ class HomeScreen extends StatelessWidget {
             ),
             SliverToBoxAdapter(child: _QuickActions()),
             SliverToBoxAdapter(child: _MiniChipsRow()),
-            // ── divider line matching the screenshot swipe indicator
             const SliverToBoxAdapter(
               child: Center(
                 child: Padding(
@@ -67,7 +67,7 @@ class HomeScreen extends StatelessWidget {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// APP BAR  –  avatar | chat | bell | card | QR-red
+// APP BAR
 // ─────────────────────────────────────────────────────────────────────────────
 
 class _AppBar extends StatelessWidget {
@@ -77,67 +77,79 @@ class _AppBar extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16, 14, 16, 8),
       child: Row(
         children: [
-          // ── Avatar with gold ring + red dot ────────────────────────────
-          Stack(
-            children: [
-              Container(
-                width: 46,
-                height: 46,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(color: AppColors.gold, width: 2),
-                  gradient: const RadialGradient(
-                    colors: [Color(0xFF3A2E00), Color(0xFF1A1A1A)],
-                  ),
-                ),
-                child: const ClipOval(
-                  child: Icon(Icons.person_rounded,
-                      color: Color(0xFFB8860B), size: 26),
-                ),
-              ),
-              Positioned(
-                right: 1,
-                bottom: 1,
-                child: Container(
-                  width: 13,
-                  height: 13,
+          GestureDetector(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const SettingsScreen()),
+            ),
+            child: Stack(
+              children: [
+                Container(
+                  width: 46,
+                  height: 46,
                   decoration: BoxDecoration(
-                    color: AppColors.accentRed,
                     shape: BoxShape.circle,
-                    border: Border.all(color: AppColors.bgDark, width: 2),
+                    border: Border.all(color: AppColors.gold, width: 2),
+                    gradient: const RadialGradient(
+                      colors: [Color(0xFF3A2E00), Color(0xFF1A1A1A)],
+                    ),
+                  ),
+                  child: const ClipOval(
+                    child: Icon(Icons.person_rounded,
+                        color: Color(0xFFB8860B), size: 26),
                   ),
                 ),
-              ),
-            ],
+                Positioned(
+                  right: 1,
+                  bottom: 1,
+                  child: Container(
+                    width: 13,
+                    height: 13,
+                    decoration: BoxDecoration(
+                      color: AppColors.accentRed,
+                      shape: BoxShape.circle,
+                      border: Border.all(color: AppColors.bgDark, width: 2),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
           const Spacer(),
-          // ── Icons ────────────────────────────────────────────────────
           _NavIcon(icon: Icons.chat_bubble_outline_rounded),
           const SizedBox(width: 6),
-          Stack(
-            clipBehavior: Clip.none,
-            children: [
-              _NavIcon(icon: Icons.notifications_none_rounded),
-              Positioned(
-                top: 6,
-                right: 6,
-                child: Container(
-                  width: 8,
-                  height: 8,
-                  decoration: const BoxDecoration(
-                    color: AppColors.accentRed,
-                    shape: BoxShape.circle,
+          GestureDetector(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const NotificationScreen()),
+            ),
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                _NavIcon(icon: Icons.notifications_none_rounded),
+                Positioned(
+                  top: 6,
+                  right: 6,
+                  child: Container(
+                    width: 8,
+                    height: 8,
+                    decoration: const BoxDecoration(
+                      color: AppColors.accentRed,
+                      shape: BoxShape.circle,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           const SizedBox(width: 6),
           _NavIcon(icon: Icons.credit_card_outlined),
           const SizedBox(width: 8),
-          // ── Red QR button ──────────────────────────────────────────
           GestureDetector(
-            onTap: () {},
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const QRScreen()),
+            ),
             child: Container(
               width: 40,
               height: 40,
@@ -145,8 +157,8 @@ class _AppBar extends StatelessWidget {
                 color: AppColors.accentRed,
                 borderRadius: BorderRadius.circular(11),
               ),
-              child:
-                  const Icon(Icons.qr_code_scanner, color: Colors.white, size: 22),
+              child: const Icon(Icons.qr_code_scanner,
+                  color: Colors.white, size: 22),
             ),
           ),
         ],
@@ -170,7 +182,7 @@ class _NavIcon extends StatelessWidget {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// BALANCE CARD  –  gold border card with chip, name, action buttons
+// BALANCE CARD
 // ─────────────────────────────────────────────────────────────────────────────
 
 class _BalanceCard extends StatelessWidget {
@@ -184,13 +196,12 @@ class _BalanceCard extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(16, 4, 16, 4),
       padding: const EdgeInsets.fromLTRB(18, 16, 18, 16),
       decoration: BoxDecoration(
-        // Very dark brown-black like the screenshot
         color: const Color(0xFF1A1500),
         borderRadius: BorderRadius.circular(18),
         border: Border.all(color: const Color(0xFFB8860B), width: 1.2),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFFB8860B).withOpacity(0.15),
+            color: const Color(0xFFB8860B).withAlpha(38), // ✅ was withOpacity(0.15)
             blurRadius: 18,
             offset: const Offset(0, 4),
           ),
@@ -199,10 +210,8 @@ class _BalanceCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // ── Row 1: chip card image + eye icon ────────────────────────
           Row(
             children: [
-              // Physical card visual (gold gradient rectangle)
               Container(
                 width: 68,
                 height: 42,
@@ -216,7 +225,6 @@ class _BalanceCard extends StatelessWidget {
                 ),
                 child: Stack(
                   children: [
-                    // Chip
                     Positioned(
                       left: 8,
                       top: 10,
@@ -226,8 +234,8 @@ class _BalanceCard extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: const Color(0xFFFFE082),
                           borderRadius: BorderRadius.circular(3),
-                          border: Border.all(
-                              color: Colors.white24, width: 0.5),
+                          border:
+                              Border.all(color: Colors.white24, width: 0.5),
                         ),
                       ),
                     ),
@@ -240,15 +248,14 @@ class _BalanceCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 16),
-          // ── Row 2: badge + name ───────────────────────────────────────
           Row(
             children: [
               Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                 decoration: BoxDecoration(
-                  border: Border.all(
-                      color: const Color(0xFFB8860B), width: 1),
+                  border:
+                      Border.all(color: const Color(0xFFB8860B), width: 1),
                   borderRadius: BorderRadius.circular(5),
                 ),
                 child: const Text(
@@ -272,7 +279,6 @@ class _BalanceCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 18),
-          // ── Row 3: ទទួល | ផ្ញើ | vbar | វិភាគ ──────────────────────
           Row(
             children: [
               _CardAction(
@@ -283,7 +289,7 @@ class _BalanceCard extends StatelessWidget {
               const SizedBox(width: 18),
               _CardAction(
                 icon: Icons.arrow_upward_rounded,
-                label: 'ផ្ញើលុយ',
+                label: 'ផ្ញើរលុយ',
                 onTap: onSend,
               ),
               const Padding(
@@ -326,7 +332,8 @@ class _CardAction extends StatelessWidget {
               color: const Color(0xFF2A2000),
               shape: BoxShape.circle,
               border: Border.all(
-                  color: const Color(0xFFB8860B).withOpacity(0.5), width: 1),
+                  color: const Color(0xFFB8860B).withAlpha(128), // ✅ was withOpacity(0.5)
+                  width: 1),
             ),
             child: Icon(icon, color: const Color(0xFFB8860B), size: 13),
           ),
@@ -346,7 +353,7 @@ class _CardAction extends StatelessWidget {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// QUICK ACTIONS  –  3 × 2 dark grid (gold icons)
+// QUICK ACTIONS
 // ─────────────────────────────────────────────────────────────────────────────
 
 class _QuickActions extends StatelessWidget {
@@ -358,12 +365,14 @@ class _QuickActions extends StatelessWidget {
       _GridItem(
         icon: Icons.account_balance_wallet_outlined,
         label: 'គណនី',
-        onTap: () {},
+        onTap: () => Navigator.push(context,
+            MaterialPageRoute(builder: (_) => const ABAAccountScreen())),
       ),
       _GridItem(
         icon: Icons.credit_card_outlined,
         label: 'កាត',
-        onTap: () {},
+        onTap: () => Navigator.push(context,
+            MaterialPageRoute(builder: (_) => const CardsScreen())),
       ),
       _GridItem(
         icon: Icons.attach_money_rounded,
@@ -373,7 +382,7 @@ class _QuickActions extends StatelessWidget {
       ),
       _GridItem(
         icon: Icons.savings_outlined,
-        label: 'ABA ស្លែន',
+        label: 'ABA ស្កែន',
         onTap: () {},
       ),
       _GridItem(
@@ -384,7 +393,7 @@ class _QuickActions extends StatelessWidget {
       ),
       _GridItem(
         icon: Icons.swap_horiz_rounded,
-        label: 'ផ្លែប្រាក់',
+        label: 'ផ្ទេរប្រាក់',
         onTap: () => Navigator.push(context,
             MaterialPageRoute(builder: (_) => const TransferScreen())),
       ),
@@ -394,7 +403,6 @@ class _QuickActions extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16, 10, 16, 6),
       child: Column(
         children: [
-          // Row 1
           Row(
             children: [
               _buildCell(items[0]),
@@ -405,7 +413,6 @@ class _QuickActions extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-          // Row 2
           Row(
             children: [
               _buildCell(items[3]),
@@ -433,7 +440,6 @@ class _QuickActions extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Gold icon inside dark circle with gold ring
               Container(
                 width: 48,
                 height: 48,
@@ -441,11 +447,11 @@ class _QuickActions extends StatelessWidget {
                   color: const Color(0xFF2A2000),
                   borderRadius: BorderRadius.circular(14),
                   border: Border.all(
-                      color: const Color(0xFFB8860B).withOpacity(0.35),
+                      color: const Color(0xFFB8860B).withAlpha(89), // ✅ was withOpacity(0.35)
                       width: 1),
                 ),
-                child: Icon(item.icon,
-                    color: const Color(0xFFD4A017), size: 24),
+                child:
+                    Icon(item.icon, color: const Color(0xFFD4A017), size: 24),
               ),
               const SizedBox(height: 7),
               Text(
@@ -475,7 +481,7 @@ class _GridItem {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// MINI CHIPS ROW  –  ណាវ | •មីនីអេប | សេវា...
+// MINI CHIPS ROW
 // ─────────────────────────────────────────────────────────────────────────────
 
 class _MiniChipsRow extends StatelessWidget {
@@ -489,14 +495,11 @@ class _MiniChipsRow extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         child: Row(
           children: const [
-            _Chip(icon: Icons.ondemand_video_rounded, label: 'ណាវ'),
+            _Chip(icon: Icons.ondemand_video_rounded, label: 'កាដូ'),
             SizedBox(width: 8),
-            _Chip(
-                icon: Icons.apps_rounded, label: 'មីនីអេប', hasDot: true),
+            _Chip(icon: Icons.apps_rounded, label: 'មីនីអេប', hasDot: true),
             SizedBox(width: 8),
-            _Chip(
-                icon: Icons.account_balance_rounded,
-                label: 'សេវាសាជីតនោះ​ភរ'),
+            _Chip(icon: Icons.account_balance_rounded, label: 'សេវាអាជីវករ'),
           ],
         ),
       ),
@@ -534,10 +537,9 @@ class _Chip extends StatelessWidget {
           ],
           Icon(icon, color: const Color(0xFFD4A017), size: 14),
           const SizedBox(width: 6),
-          Text(
-            label,
-            style: const TextStyle(color: Color(0xFFCCCCCC), fontSize: 12),
-          ),
+          Text(label,
+              style:
+                  const TextStyle(color: Color(0xFFCCCCCC), fontSize: 12)),
         ],
       ),
     );
@@ -545,7 +547,7 @@ class _Chip extends StatelessWidget {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// SWIPE INDICATOR  –  white pill (matches screenshot bottom of dark section)
+// SWIPE INDICATOR
 // ─────────────────────────────────────────────────────────────────────────────
 
 class _SwipeIndicator extends StatelessWidget {
@@ -565,7 +567,7 @@ class _SwipeIndicator extends StatelessWidget {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// PROMO BANNER  –  "ជំណើង & ព្រម័ូស្យូន" section
+// PROMO BANNER
 // ─────────────────────────────────────────────────────────────────────────────
 
 class _PromoBanner extends StatelessWidget {
@@ -587,7 +589,6 @@ class _PromoBanner extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          // Banner card – deep blue like screenshot
           ClipRRect(
             borderRadius: BorderRadius.circular(18),
             child: Container(
@@ -602,27 +603,25 @@ class _PromoBanner extends StatelessWidget {
               ),
               child: Stack(
                 children: [
-                  // Faded car
                   Positioned(
                     right: -8,
                     bottom: -6,
                     child: Icon(Icons.directions_car_rounded,
                         size: 110,
-                        color: Colors.white.withOpacity(0.08)),
+                        color: Colors.white.withAlpha(20)), // ✅ was withOpacity(0.08)
                   ),
                   Padding(
                     padding: const EdgeInsets.all(18),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // ABA logo text row
                         Row(
                           children: [
                             Container(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 8, vertical: 3),
                               decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.12),
+                                color: Colors.white.withAlpha(31), // ✅ was withOpacity(0.12)
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: RichText(
@@ -647,11 +646,9 @@ class _PromoBanner extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 8),
-                        const Text(
-                          'ចង្អុរ:',
-                          style: TextStyle(
-                              color: Colors.white70, fontSize: 12),
-                        ),
+                        const Text('ចង្អុរ:',
+                            style: TextStyle(
+                                color: Colors.white70, fontSize: 12)),
                         const SizedBox(height: 6),
                         Container(
                           padding: const EdgeInsets.symmetric(
@@ -673,7 +670,6 @@ class _PromoBanner extends StatelessWidget {
                       ],
                     ),
                   ),
-                  // Dots indicator (bottom center)
                   Positioned(
                     bottom: 10,
                     left: 0,
@@ -685,11 +681,10 @@ class _PromoBanner extends StatelessWidget {
                         (i) => Container(
                           width: i == 0 ? 16 : 6,
                           height: 4,
-                          margin: const EdgeInsets.symmetric(horizontal: 2),
+                          margin:
+                              const EdgeInsets.symmetric(horizontal: 2),
                           decoration: BoxDecoration(
-                            color: i == 0
-                                ? Colors.white
-                                : Colors.white38,
+                            color: i == 0 ? Colors.white : Colors.white38,
                             borderRadius: BorderRadius.circular(2),
                           ),
                         ),
@@ -707,18 +702,19 @@ class _PromoBanner extends StatelessWidget {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// MINI APPS SECTION  –  horizontal scroll with real-looking icons
+// MINI APPS SECTION
 // ─────────────────────────────────────────────────────────────────────────────
 
 class _MiniAppsSection extends StatelessWidget {
   const _MiniAppsSection();
 
   static const _apps = [
-    _AppEntry('Angkor DC',      Color(0xFFFF6600), Icons.local_fire_department_rounded),
-    _AppEntry('Smart',          Color(0xFF1B8A3E), Icons.smartphone_rounded),
-    _AppEntry('Metfone',        Color(0xFFE53935), Icons.phone_android_rounded),
+    _AppEntry('Angkor DC', Color(0xFFFF6600),
+        Icons.local_fire_department_rounded),
+    _AppEntry('Smart', Color(0xFF1B8A3E), Icons.smartphone_rounded),
+    _AppEntry('Metfone', Color(0xFFE53935), Icons.phone_android_rounded),
     _AppEntry('Ebook Cambodia', Color(0xFF37474F), Icons.menu_book_rounded),
-    _AppEntry('Express',        Color(0xFF1565C0), Icons.local_shipping_rounded),
+    _AppEntry('Express', Color(0xFF1565C0), Icons.local_shipping_rounded),
   ];
 
   @override
@@ -730,13 +726,11 @@ class _MiniAppsSection extends StatelessWidget {
         children: [
           const Padding(
             padding: EdgeInsets.only(right: 16),
-            child: Text(
-              'មីនីអេប',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700),
-            ),
+            child: Text('មីនីអេប',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700)),
           ),
           const SizedBox(height: 14),
           SingleChildScrollView(
@@ -755,25 +749,24 @@ class _MiniAppsSection extends StatelessWidget {
                           borderRadius: BorderRadius.circular(16),
                           boxShadow: [
                             BoxShadow(
-                              color: a.color.withOpacity(0.3),
+                              color: a.color.withAlpha(77), // ✅ was withOpacity(0.3)
                               blurRadius: 8,
                               offset: const Offset(0, 3),
                             ),
                           ],
                         ),
-                        child: Icon(a.icon, color: Colors.white, size: 30),
+                        child:
+                            Icon(a.icon, color: Colors.white, size: 30),
                       ),
                       const SizedBox(height: 7),
                       SizedBox(
                         width: 66,
-                        child: Text(
-                          a.name,
-                          style: const TextStyle(
-                              color: Color(0xFF999999), fontSize: 10),
-                          textAlign: TextAlign.center,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
+                        child: Text(a.name,
+                            style: const TextStyle(
+                                color: Color(0xFF999999), fontSize: 10),
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis),
                       ),
                     ],
                   ),
@@ -802,11 +795,11 @@ class _GovServicesSection extends StatelessWidget {
   const _GovServicesSection();
 
   static const _govs = [
-    _GovEntry('ប.ស.ស. បុគ្គល\nស្លោ​យ​ស​ន',    Color(0xFF1565C0)),
-    _GovEntry('ផ្លូវ\nសេវ',                    Color(0xFFFFB300)),
-    _GovEntry('អតុរ\nកម្ម',                    Color(0xFFE64A19)),
-    _GovEntry('ប​ញ​ញ​ា\nវ​ត​',                 Color(0xFF283593)),
-    _GovEntry('ប​ណ​ណ​ក',                       Color(0xFF00838F)),
+    _GovEntry('ប.ស.ស. បុគ្គល\nស្លោ​យ​ស​ន', Color(0xFF1565C0)),
+    _GovEntry('ផ្លូវ\nសេវ', Color(0xFFFFB300)),
+    _GovEntry('អតុរ\nកម្ម', Color(0xFFE64A19)),
+    _GovEntry('ប​ញ​ញ​ា\nវ​ត​', Color(0xFF283593)),
+    _GovEntry('ប​ណ​ណ​ក', Color(0xFF00838F)),
   ];
 
   @override
@@ -818,13 +811,11 @@ class _GovServicesSection extends StatelessWidget {
         children: [
           const Padding(
             padding: EdgeInsets.only(right: 16),
-            child: Text(
-              'សេវាសាជីតនោះ​ភរិបាល',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700),
-            ),
+            child: Text('សេវារដ្ឋាភិបាល',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700)),
           ),
           const SizedBox(height: 14),
           SingleChildScrollView(
@@ -842,10 +833,11 @@ class _GovServicesSection extends StatelessWidget {
                           color: Colors.white,
                           shape: BoxShape.circle,
                           border: Border.all(
-                              color: g.color.withOpacity(0.3), width: 1.5),
+                              color: g.color.withAlpha(77), // ✅ was withOpacity(0.3)
+                              width: 1.5),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.15),
+                              color: Colors.black.withAlpha(38), // ✅ was withOpacity(0.15)
                               blurRadius: 6,
                             ),
                           ],
@@ -856,12 +848,10 @@ class _GovServicesSection extends StatelessWidget {
                       const SizedBox(height: 7),
                       SizedBox(
                         width: 66,
-                        child: Text(
-                          g.name,
-                          style: const TextStyle(
-                              color: Color(0xFF999999), fontSize: 10),
-                          textAlign: TextAlign.center,
-                        ),
+                        child: Text(g.name,
+                            style: const TextStyle(
+                                color: Color(0xFF999999), fontSize: 10),
+                            textAlign: TextAlign.center),
                       ),
                     ],
                   ),
@@ -882,14 +872,14 @@ class _GovEntry {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// MORE ACTIVITIES SECTION  –  horizontal scroll cards (image 2 bottom)
+// MORE ACTIVITIES SECTION
 // ─────────────────────────────────────────────────────────────────────────────
 
 class _MoreActivitiesSection extends StatelessWidget {
   const _MoreActivitiesSection();
 
   static const _activities = [
-    _ActivityEntry('ABA កម', Color(0xFF6A1B9A)),
+    _ActivityEntry('ABA ខ្មែរ', Color(0xFF6A1B9A)),
     _ActivityEntry('ABA App', Color(0xFF1565C0)),
     _ActivityEntry('ការស្ដម', Color(0xFF00695C)),
     _ActivityEntry('ទូទាត់', Color(0xFF37474F)),
@@ -904,13 +894,11 @@ class _MoreActivitiesSection extends StatelessWidget {
         children: [
           const Padding(
             padding: EdgeInsets.only(right: 16),
-            child: Text(
-              'ការស្ដែងការថ្មី',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700),
-            ),
+            child: Text('ការស្ដែងការថ្មី',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700)),
           ),
           const SizedBox(height: 14),
           SingleChildScrollView(
@@ -925,8 +913,8 @@ class _MoreActivitiesSection extends StatelessWidget {
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          a.color.withOpacity(0.8),
-                          a.color,
+                          a.color.withAlpha(204), // ✅ was withOpacity(0.8)
+                          a.color
                         ],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
@@ -934,15 +922,13 @@ class _MoreActivitiesSection extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: Center(
-                      child: Text(
-                        a.name,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 13,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
+                      child: Text(a.name,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          textAlign: TextAlign.center),
                     ),
                   ),
                 );
@@ -962,7 +948,7 @@ class _ActivityEntry {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// TRANSFER BOTTOM SHEET  (ផ្ញើលុយ)
+// TRANSFER BOTTOM SHEET
 // ─────────────────────────────────────────────────────────────────────────────
 
 class _TransferBottomSheet extends StatelessWidget {
@@ -980,7 +966,6 @@ class _TransferBottomSheet extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Handle
           Center(
             child: Container(
               width: 40,
@@ -992,13 +977,11 @@ class _TransferBottomSheet extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          const Text(
-            'ទទួលលុយ:',
-            style: TextStyle(
-                color: Color(0xFF111111),
-                fontSize: 17,
-                fontWeight: FontWeight.w700),
-          ),
+          const Text('ទទួលលុយ:',
+              style: TextStyle(
+                  color: Color(0xFF111111),
+                  fontSize: 17,
+                  fontWeight: FontWeight.w700)),
           const SizedBox(height: 14),
           _SheetOption(
             icon: Icons.account_balance_wallet_outlined,
@@ -1042,7 +1025,7 @@ class _TransferBottomSheet extends StatelessWidget {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// RECEIVE BOTTOM SHEET  (ទទួលលុយ)
+// RECEIVE BOTTOM SHEET
 // ─────────────────────────────────────────────────────────────────────────────
 
 class _ReceiveBottomSheet extends StatelessWidget {
@@ -1071,13 +1054,11 @@ class _ReceiveBottomSheet extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          const Text(
-            'ផ្ញើលុយចេញ:',
-            style: TextStyle(
-                color: Color(0xFF111111),
-                fontSize: 17,
-                fontWeight: FontWeight.w700),
-          ),
+          const Text('ផ្ញើលុយចេញ:',
+              style: TextStyle(
+                  color: Color(0xFF111111),
+                  fontSize: 17,
+                  fontWeight: FontWeight.w700)),
           const SizedBox(height: 14),
           _SheetOption(
             icon: Icons.bookmark_border_rounded,
@@ -1109,7 +1090,7 @@ class _ReceiveBottomSheet extends StatelessWidget {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// SHEET OPTION ROW  – shared by both bottom sheets
+// SHEET OPTION ROW
 // ─────────────────────────────────────────────────────────────────────────────
 
 class _SheetOption extends StatelessWidget {
@@ -1143,7 +1124,7 @@ class _SheetOption extends StatelessWidget {
               width: 42,
               height: 42,
               decoration: BoxDecoration(
-                color: iconColor.withOpacity(0.12),
+                color: iconColor.withAlpha(31), // ✅ was withOpacity(0.12)
                 shape: BoxShape.circle,
               ),
               child: Icon(icon, color: iconColor, size: 20),

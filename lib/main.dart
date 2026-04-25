@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'theme/app_theme.dart';
 import 'utils/app_routes.dart';
@@ -9,6 +10,7 @@ import 'screens/home_screen.dart';
 import 'screens/mypass_screen.dart';
 import 'screens/settings_screen.dart';
 import 'screens/transfer_screen.dart';
+
 
 // ─────────────────────────────────────────────────────────────────────────────
 // ENTRY POINT
@@ -36,19 +38,23 @@ class ABAMobileApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'ABA Mobile',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.dark,
-      initialRoute: AppRoutes.home,
-      routes: {
-        AppRoutes.home:      (_) => const MainShell(),
-        AppRoutes.transfer:  (_) => const TransferScreen(),
-        AppRoutes.favorites: (_) => const FavoritesScreen(),
-        AppRoutes.exchange:  (_) => const ExchangeScreen(),
-        AppRoutes.mypass:    (_) => const MyPassScreen(),
-        AppRoutes.settings:  (_) => const SettingsScreen(),
-      },
-    );
+  title: 'ABA Mobile',
+  debugShowCheckedModeBanner: false,
+  theme: AppTheme.dark.copyWith(          // ← copyWith ជំនួស AppTheme.dark
+    textTheme: GoogleFonts.notoSansKhmerTextTheme(
+      AppTheme.dark.textTheme,
+    ),
+  ),
+  initialRoute: AppRoutes.home,
+  routes: {
+    AppRoutes.home:      (_) => const MainShell(),
+    AppRoutes.transfer:  (_) => const TransferScreen(),
+    AppRoutes.favorites: (_) => const FavoritesScreen(),
+    AppRoutes.exchange:  (_) => const ExchangeScreen(),
+    AppRoutes.mypass:    (_) => const MyPassScreen(),
+    AppRoutes.settings:  (_) => const SettingsScreen(),
+  },
+);
   }
 }
 
