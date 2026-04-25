@@ -94,7 +94,7 @@ class ExchangeScreen extends StatelessWidget {
                             ]),
                             const SizedBox(height: 6),
                             const Text(
-                              'ទូទាត់លុយ ជំនះ គ្រីង\nនិងសេវានានា',
+                              'បញ្ចូលលុយទូរស័ព្ទ\nនិងសេវានានា',
                               style: TextStyle(
                                   color: Colors.white70, fontSize: 12),
                             ),
@@ -198,10 +198,10 @@ class _FavBtn extends StatelessWidget {
 
 class _ServicesGrid extends StatelessWidget {
   static const _items = [
-    {'icon': Icons.phone_outlined,          'color': Colors.teal,   'title': 'បញ្ចូលលុយទូរស័ព្ទ', 'sub': 'Smart • Metfone • mfone'},
+    {'icon': Icons.phone_outlined,          'color': Colors.teal,   'title': 'បញ្ចូលលុយទូរស័ព្ទ', 'sub': 'Smart • Metfone • metfone'},
     {'icon': Icons.wifi_rounded,            'color': Colors.green,  'title': 'អ៊ីនធីណែត',          'sub': 'ទូទាត់សេវាអ៊ីនធីណែត'},
-    {'icon': Icons.bolt_rounded,            'color': Colors.blue,   'title': 'វិក្យបត្រ',           'sub': 'ទូទាត់វិក្យបត្រ'},
-    {'icon': Icons.account_balance_rounded, 'color': Colors.orange, 'title': 'ផ្ទេរប្រាក់',         'sub': 'ជំនះ គ្រីង'},
+    {'icon': Icons.bolt_rounded,            'color': Colors.blue,   'title': 'វិកយបត្រ',           'sub': 'ទូទាត់វិកយបត្រ'},
+    {'icon': Icons.account_balance_rounded, 'color': Colors.orange, 'title': 'សេវាស្ថាប័ណ្ណរដ្ឋាភិបាល',         'sub': 'បង់ពន្ធ​កម្រៃ និងសេវាផ្សេងៗ'},
   ];
 
   @override

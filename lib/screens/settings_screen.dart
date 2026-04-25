@@ -28,7 +28,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         color: Colors.white, size: 24),
     onPressed: () => Navigator.pop(context),
   ),
-  // ✅ Remove title and centerTitle entirely — no more font conflict
+  // 
   flexibleSpace: FlexibleSpaceBar(
     background: Stack(
       fit: StackFit.expand,
@@ -61,7 +61,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
         ),
-        // ✅ Title placed at top-center like other screens' AbaLogo rows
+        // 
         Positioned(
           top: 20,
           left: 0,
@@ -73,7 +73,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 color: Colors.white,
                 fontSize: 17,
                 fontWeight: FontWeight.w600,
-                // ✅ No fontFamily needed — inherits your app default
+                // 
               ),
             ),
           ),
@@ -155,7 +155,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   const SizedBox(height: 10),
                   SettingsRow(
                       icon: Icons.phone_outlined,
-                      title: 'ទាក់ទងតមកយើងខ្ញុំ'),
+                      title: 'ទាក់ទងមកយើងខ្ញុំ'),
                   const SizedBox(height: 10),
                   SettingsRow(
                       icon: Icons.description_outlined,
@@ -327,7 +327,7 @@ class _VersionCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('កំហ្ចៀស កំណែ: V 5.0.94',
+              const Text('កម្មវិធី កំណែ: V 5.0.94',
                   style:
                       TextStyle(color: Color(0xFF333333), fontSize: 13)),
               Container(
@@ -345,7 +345,7 @@ class _VersionCard extends StatelessWidget {
                           color: Colors.green,
                           shape: BoxShape.circle)),
                   const SizedBox(width: 5),
-                  const Text('ចុះប្រាប',
+                  const Text('ចុងក្រោយ',
                       style: TextStyle(
                           color: Colors.green, fontSize: 11)),
                 ]),
@@ -356,7 +356,7 @@ class _VersionCard extends StatelessWidget {
           const Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              'Login ចុះប្រាប: 18:33 | 14 មេសា 2026',
+              'Login ចុងក្រោយ: 18:33 | 14 មេសា 2026',
               style:
                   TextStyle(color: Color(0xFF888888), fontSize: 12),
             ),
@@ -365,7 +365,7 @@ class _VersionCard extends StatelessWidget {
           const Row(children: [
             Text('🇰🇭 ', style: TextStyle(fontSize: 16)),
             Text(
-              'មោទនភូមិស្ថានខ្មែរ បង្ហើតនៅកម្ពុជា',
+              'មោទនភាពស្នាដៃខ្មែរ បង្ហើតនៅកម្ពុជា',
               style: TextStyle(color: Color(0xFF888888), fontSize: 12),
             ),
           ]),

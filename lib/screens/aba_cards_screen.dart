@@ -1,4 +1,6 @@
+import 'package:aba_project/screens/virtual_card_detail_screen.dart';
 import 'package:flutter/material.dart';
+import 'debit_card_detail_screen.dart';
 
 // ─────────────────────────────────────────────
 // Entry point (for standalone testing)
@@ -23,9 +25,7 @@ class ABAApp extends StatelessWidget {
   }
 }
 
-// ─────────────────────────────────────────────
-// HOME SCREEN  (Image 2)
-// ─────────────────────────────────────────────
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            // ── Top bar ──────────────────────────────
+            
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               child: Row(
@@ -93,7 +93,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
 
-            // ── Account card ─────────────────────────
+            
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 16),
               padding: const EdgeInsets.all(16),
@@ -170,7 +170,7 @@ class HomeScreen extends StatelessWidget {
 
             const SizedBox(height: 20),
 
-            // ── Feature grid ─────────────────────────
+            
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -215,7 +215,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     _GridItem(
                       icon: Icons.swap_horiz,
-                      label: 'ផ្លាប្រាក់',
+                      label: 'ផ្ទេរប្រាក់',
                       onTap: () {},
                     ),
                   ],
@@ -397,7 +397,12 @@ class CardsScreen extends StatelessWidget {
                         'ស្នើបើកកាតឥណពន្ធស្ទិក ដោយមានជម្រើសទៅយក\n'
                         'នៅសាខាដោយខ្លួនឯង ឬទទួលតាមសេវាដឹកជញ្ជូន\nក៍បាន។',
                     networks: const ['VISA', 'MC', 'UP', 'CSS'],
-                    onTap: () {},
+                    onTap: () {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (_) => const DebitCardDetailScreen()),
+  );
+},
                   ),
                   const SizedBox(height: 12),
 
@@ -410,7 +415,12 @@ class CardsScreen extends StatelessWidget {
                         'បើកកាតនិម្មិតបានភ្លាមៗ​​ ឥតគិតតម្លៃ ដែលជាកាតឥណពន្ធ\n'
                         'ប្រភេទ Visa, Mastercard, ឬ UnionPay។ កាត\nនិម្មិត មានសុវត្ថិភាពខ្ពស់​សម្រាប់ការទូទាត់អនឡាញ។',
                     networks: const ['VISA', 'MC', 'UP'],
-                    onTap: () {},
+                    onTap: () {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (_) => const VirtualCardDetailScreen()),
+  );
+},
                   ),
 
                   const SizedBox(height: 30),

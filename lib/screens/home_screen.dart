@@ -382,7 +382,7 @@ class _QuickActions extends StatelessWidget {
       ),
       _GridItem(
         icon: Icons.savings_outlined,
-        label: 'ABA ស្កែន',
+        label: 'ABA ស្គែន',
         onTap: () {},
       ),
       _GridItem(
@@ -795,11 +795,11 @@ class _GovServicesSection extends StatelessWidget {
   const _GovServicesSection();
 
   static const _govs = [
-    _GovEntry('ប.ស.ស. បុគ្គល\nស្លោ​យ​ស​ន', Color(0xFF1565C0)),
-    _GovEntry('ផ្លូវ\nសេវ', Color(0xFFFFB300)),
-    _GovEntry('អតុរ\nកម្ម', Color(0xFFE64A19)),
-    _GovEntry('ប​ញ​ញ​ា\nវ​ត​', Color(0xFF283593)),
-    _GovEntry('ប​ណ​ណ​ក', Color(0xFF00838F)),
+    _GovEntry('ប.ស.ស. បុគ្គល\nស្វ័យនិយោជន៍', Color(0xFF1565C0)),
+    _GovEntry('ផ្លូវ\nល្បឿនលឿន', Color(0xFFFFB300)),
+    _GovEntry('អគ្គនិយកដ្ឋាន\nគយនិងរដ្ឋាករ', Color(0xFFE64A19)),
+    _GovEntry('វិញ្ញាបនបត្រ\nពិនិត្យកាយ​', Color(0xFF283593)),
+    _GovEntry('ប័ណ្ណការងារជនបរទេស', Color(0xFF00838F)),
   ];
 
   @override
@@ -881,7 +881,7 @@ class _MoreActivitiesSection extends StatelessWidget {
   static const _activities = [
     _ActivityEntry('ABA ខ្មែរ', Color(0xFF6A1B9A)),
     _ActivityEntry('ABA App', Color(0xFF1565C0)),
-    _ActivityEntry('ការស្ដម', Color(0xFF00695C)),
+    _ActivityEntry('ផ្ទៃងងឹត', Color(0xFF00695C)),
     _ActivityEntry('ទូទាត់', Color(0xFF37474F)),
   ];
 
@@ -894,7 +894,7 @@ class _MoreActivitiesSection extends StatelessWidget {
         children: [
           const Padding(
             padding: EdgeInsets.only(right: 16),
-            child: Text('ការស្ដែងការថ្មី',
+            child: Text('ការស្វែងរកថ្មីៗ',
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,

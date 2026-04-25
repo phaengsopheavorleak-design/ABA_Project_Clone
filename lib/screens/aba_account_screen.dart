@@ -183,7 +183,7 @@ class ABAAccountScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: const [
                           Text(
-                            'វិភាគក់ដែលមាន',
+                            'វិភាគដែលមាន',
                             style: TextStyle(color: Colors.white70, fontSize: 11),
                           ),
                           SizedBox(height: 6),
