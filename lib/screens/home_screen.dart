@@ -66,9 +66,6 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// APP BAR
-// ─────────────────────────────────────────────────────────────────────────────
 
 class _AppBar extends StatelessWidget {
   @override
@@ -181,9 +178,6 @@ class _NavIcon extends StatelessWidget {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// BALANCE CARD
-// ─────────────────────────────────────────────────────────────────────────────
 
 class _BalanceCard extends StatelessWidget {
   final VoidCallback onReceive;
@@ -352,9 +346,6 @@ class _CardAction extends StatelessWidget {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// QUICK ACTIONS
-// ─────────────────────────────────────────────────────────────────────────────
 
 class _QuickActions extends StatelessWidget {
   const _QuickActions();
@@ -382,7 +373,7 @@ class _QuickActions extends StatelessWidget {
       ),
       _GridItem(
         icon: Icons.savings_outlined,
-        label: 'ABA ស្គែន',
+        label: 'ABA ស្កែន',
         onTap: () {},
       ),
       _GridItem(
@@ -480,9 +471,6 @@ class _GridItem {
       {required this.icon, required this.label, required this.onTap});
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// MINI CHIPS ROW
-// ─────────────────────────────────────────────────────────────────────────────
 
 class _MiniChipsRow extends StatelessWidget {
   const _MiniChipsRow();
@@ -546,9 +534,6 @@ class _Chip extends StatelessWidget {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// SWIPE INDICATOR
-// ─────────────────────────────────────────────────────────────────────────────
 
 class _SwipeIndicator extends StatelessWidget {
   const _SwipeIndicator();
@@ -566,9 +551,6 @@ class _SwipeIndicator extends StatelessWidget {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// PROMO BANNER
-// ─────────────────────────────────────────────────────────────────────────────
 
 class _PromoBanner extends StatelessWidget {
   const _PromoBanner();
@@ -701,9 +683,6 @@ class _PromoBanner extends StatelessWidget {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// MINI APPS SECTION
-// ─────────────────────────────────────────────────────────────────────────────
 
 class _MiniAppsSection extends StatelessWidget {
   const _MiniAppsSection();
@@ -787,19 +766,16 @@ class _AppEntry {
   const _AppEntry(this.name, this.color, this.icon);
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// GOVERNMENT SERVICES SECTION
-// ─────────────────────────────────────────────────────────────────────────────
 
 class _GovServicesSection extends StatelessWidget {
   const _GovServicesSection();
 
   static const _govs = [
-    _GovEntry('ប.ស.ស. បុគ្គល\nស្វ័យនិយោជន៍', Color(0xFF1565C0)),
-    _GovEntry('ផ្លូវ\nល្បឿនលឿន', Color(0xFFFFB300)),
-    _GovEntry('អគ្គនិយកដ្ឋាន\nគយនិងរដ្ឋាករ', Color(0xFFE64A19)),
-    _GovEntry('វិញ្ញាបនបត្រ\nពិនិត្យកាយ​', Color(0xFF283593)),
-    _GovEntry('ប័ណ្ណការងារជនបរទេស', Color(0xFF00838F)),
+    _GovEntry('ប.ស.ស. បុគ្គល\nស្លោ​យ​ស​ន', Color(0xFF1565C0)),
+    _GovEntry('ផ្លូវ\nសេវ', Color(0xFFFFB300)),
+    _GovEntry('អតុរ\nកម្ម', Color(0xFFE64A19)),
+    _GovEntry('ប​ញ​ញ​ា\nវ​ត​', Color(0xFF283593)),
+    _GovEntry('ប​ណ​ណ​ក', Color(0xFF00838F)),
   ];
 
   @override
@@ -871,9 +847,6 @@ class _GovEntry {
   const _GovEntry(this.name, this.color);
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// MORE ACTIVITIES SECTION
-// ─────────────────────────────────────────────────────────────────────────────
 
 class _MoreActivitiesSection extends StatelessWidget {
   const _MoreActivitiesSection();
@@ -881,7 +854,7 @@ class _MoreActivitiesSection extends StatelessWidget {
   static const _activities = [
     _ActivityEntry('ABA ខ្មែរ', Color(0xFF6A1B9A)),
     _ActivityEntry('ABA App', Color(0xFF1565C0)),
-    _ActivityEntry('ផ្ទៃងងឹត', Color(0xFF00695C)),
+    _ActivityEntry('ការស្ដម', Color(0xFF00695C)),
     _ActivityEntry('ទូទាត់', Color(0xFF37474F)),
   ];
 
@@ -894,7 +867,7 @@ class _MoreActivitiesSection extends StatelessWidget {
         children: [
           const Padding(
             padding: EdgeInsets.only(right: 16),
-            child: Text('ការស្វែងរកថ្មីៗ',
+            child: Text('ការស្ដែងការថ្មី',
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,
@@ -947,9 +920,6 @@ class _ActivityEntry {
   const _ActivityEntry(this.name, this.color);
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// TRANSFER BOTTOM SHEET
-// ─────────────────────────────────────────────────────────────────────────────
 
 class _TransferBottomSheet extends StatelessWidget {
   const _TransferBottomSheet();
@@ -1024,9 +994,6 @@ class _TransferBottomSheet extends StatelessWidget {
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// RECEIVE BOTTOM SHEET
-// ─────────────────────────────────────────────────────────────────────────────
 
 class _ReceiveBottomSheet extends StatelessWidget {
   const _ReceiveBottomSheet();
@@ -1088,10 +1055,6 @@ class _ReceiveBottomSheet extends StatelessWidget {
     );
   }
 }
-
-// ─────────────────────────────────────────────────────────────────────────────
-// SHEET OPTION ROW
-// ─────────────────────────────────────────────────────────────────────────────
 
 class _SheetOption extends StatelessWidget {
   final IconData icon;
